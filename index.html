@@ -4,60 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Discord Bot Control Panel</title>
-    <style>
-        body { font-family: Arial, sans-serif; }
-        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
-        .button { margin: 10px 0; padding: 10px 20px; font-size: 16px; cursor: pointer; }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Discord Bot Control Panel</h1>
-        <button class="button" onclick="viewMembers()">View Members</button>
-        <button class="button" onclick="banMember()">Ban Member</button>
-        <button class="button" onclick="muteMember()">Mute Member</button>
-        <button class="button" onclick="writeAnnouncement()">Write Announcement</button>
-        <div id="output"></div>
-    </div>
-    <script>
-        async function viewMembers() {
-            const response = await fetch('/view-members');
-            const data = await response.json();
-            document.getElementById('output').innerText = JSON.stringify(data, null, 2);
-        }
-
-        async function banMember() {
-            const memberId = prompt('Enter the member ID to ban:');
-            const response = await fetch('/ban-member', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ memberId })
-            });
-            const data = await response.json();
-            document.getElementById('output').innerText = data.message;
-        }
-
-        async function muteMember() {
-            const memberId = prompt('Enter the member ID to mute:');
-            const response = await fetch('/mute-member', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ memberId })
-            });
-            const data = await response.json();
-            document.getElementById('output').innerText = data.message;
-        }
-
-        async function writeAnnouncement() {
-            const announcement = prompt('Enter your announcement:');
-            const response = await fetch('/write-announcement', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ announcement })
-            });
-            const data = await response.json();
-            document.getElementById('output').innerText = data.message;
-        }
-    </script>
+    <h1>Discord Bot Control Panel</h1>
+    <button onclick="viewMembers()">View Members</button>
+    <button onclick="banMember()">Ban Member</button>
+    <button onclick="muteMember()">Mute Member</button>
+    <button onclick="writeAnnouncement()">Write Announcement</button>
+    <pre id="output"></pre>
+    <script src="script.js"></script>
 </body>
 </html>
