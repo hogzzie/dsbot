@@ -28,7 +28,7 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
 
 app.get('/view-members', async (req, res) => {
-  const guild = client.guilds.cache.get('YOUR_GUILD_ID_HERE');
+  const guild = client.guilds.cache.get('1241480463999045682');
   const members = await guild.members.fetch();
   res.json(members.map(member => ({ id: member.id, username: member.user.username })));
 });
